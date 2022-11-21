@@ -13,8 +13,22 @@ namespace TicketSystemClient{
         static HttpClient client = new HttpClient();
 
         public static void Main(string[] args)
-        {
-            //RunAsync().GetAwaiter().GetResult();
+        {   /*
+            Employee dave = new Employee(1, "dave", "davidson", "daviduser", "password");
+            Employee chester = new Employee(2, "chester", "chesterson", "chesteruser", "chesterpass");
+            
+            Ticket ticket = new Ticket(1, 2, "Des", 3,4);
+            Ticket ticket2 = new Ticket(2, 3, "another", 3, 4);
+            displayTicket(ticket);
+            List<Ticket> list = new List<Ticket>();
+            list.Add(ticket);
+            list.Add(ticket2);
+            list.Add(ticket2);
+            list.Add(ticket2);
+            list.Add(ticket2);
+            displayTicketsList(list);
+             */
+            RunAsync().GetAwaiter().GetResult();
         }
 
         static async Task RunAsync()
@@ -26,13 +40,14 @@ namespace TicketSystemClient{
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
             try
-            {
-                Employee e = new Employee(1, "Today", "Is", "So", "Hot");
-                var url = await CreateEmployeeAsync(e);
-                Console.WriteLine("Employee URL is: " + url);
+            {     //blank objects to initialize 
+                  Employee employee = new Employee();
+                  Ticket ticket = new Ticket();
+                  List<Ticket> tickets = new List<Ticket>();
+                  List<Employee> employees = new List<Employee>();
+                  employee = await loginPrompt();
+                  displayEmployee(employee);
 
-                e = await GetEmployeeAsync(url.ToString());
-                displayEmployee(e);
             } 
             catch(Exception e)
             {
@@ -52,7 +67,40 @@ namespace TicketSystemClient{
                 $"Role: {employee.role}\t "
                 );
         }
+
+        static void displayEmployeesList(List<Employee> employees)
+        {
+            foreach(Employee person in employees) 
+                Console.WriteLine($"ID: {person.iD}\t " +
+                $"First Name: {person.fname}\t " +
+                $"Last Name: {person.lname}\t " +
+                $"Username: {person.userName}\t " +
+                $"Password: {person.password}\t " +
+                $"Role: {person.role}\t "
+                );
+        }
         
+        static void displayTicket(Ticket ticket)
+        {
+            Console.WriteLine($"Ticket ID: {ticket.Id}\t " +
+                $"Amount: {ticket.amount}\t " +
+                $"Status: {ticket.status}\t " + 
+                $"Description: {ticket.description}\t +" +
+                $"Submitted By: {ticket.submittedBy}\t "+ 
+                $"Processed By: {ticket.processedBy}");
+        }
+
+        static void displayTicketsList(List<Ticket> tickets)
+        {
+            foreach(Ticket ticket in tickets)
+                Console.WriteLine($"Ticket ID: {ticket.Id}\t " +
+                $"Amount: {ticket.amount}\t " +
+                $"Status: {ticket.status}\t " +
+                $"Description: {ticket.description}\t " +
+                $"Submitted By: {ticket.submittedBy}\t " +
+                $"Processed By: {ticket.processedBy}");
+        }
+
         //takes a URL and returns the employee
         static async Task<Employee> GetEmployeeAsync(string path)
         {
@@ -65,6 +113,8 @@ namespace TicketSystemClient{
             return employee;
         }
 
+        
+
         //creates employee and returns a URL which is the location of employee
         static async Task<Uri> CreateEmployeeAsync(Employee employee)
         {
@@ -74,19 +124,22 @@ namespace TicketSystemClient{
 
             return response.Headers.Location;
         }
-        /*
-        static async Task<Employee> PromptLogin(string userName,string passWord)
-        {
 
-            Console.WriteLine("Welcome to the system");
+        static async Task<Employee> loginPrompt()
+        {
+            Employee employee = new Employee();
             Console.WriteLine("Please enter your username");
-            string user = Console.ReadLine();
+            string username = Console.ReadLine();
             Console.WriteLine("Please enter your password");
             string password = Console.ReadLine();
-            
-            
+
+            HttpResponseMessage response = await client.GetAsync($"/login/{username}/{password}");
+            if (response.IsSuccessStatusCode)
+            {
+                employee = await response.Content.ReadAsAsync<Employee>();
+            }
+            return employee;
         }
-        */
         
         //Manager methods
         
