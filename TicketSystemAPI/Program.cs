@@ -82,6 +82,12 @@ app.MapPut("/tickets/{id}", (SQLRepo repo,Employee employee,int ticketId,string 
     return Results.NoContent();
 });
 
+app.MapGet("/usernameCheck/{username}", (SQLRepo repo, string username) =>
+{
+    return repo.userNameCheck(username, connString);
+});
+      
+
 app.MapGet("/weatherforecast", () =>
 {
     var forecast = Enumerable.Range(1, 5).Select(index =>

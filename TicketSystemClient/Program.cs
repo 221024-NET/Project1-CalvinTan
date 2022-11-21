@@ -59,7 +59,7 @@ namespace TicketSystemClient{
                             Console.WriteLine("Welcome to the Ticket Reimbursment System");
                             Console.WriteLine();
                             Console.WriteLine("What would you like to do today?");
-                            Console.WriteLine("1. Register as Employee \t 2. Login");
+                            Console.WriteLine("1. Register as Employee \t 2. Login ");
                             int input = Convert.ToInt32(Console.ReadLine());
                             if (input == 1)
                                 position = "Register";
@@ -68,64 +68,63 @@ namespace TicketSystemClient{
                             break;
                         case "Login":
                             Console.WriteLine("Login");
-                            endApp = true;
+                            //Login Page
+                            while (loggedIn != true)
+                            {
+                                employee = await loginPrompt();
+                                if (employee != null)
+                                {
+                                    Console.WriteLine($"{employee.userName}" + " has logged in");
+                                    loggedIn = true;
+                                }
+                                else
+                                    Console.WriteLine("Invalid credentials, please try again");
+                            }
+
+                            //Manager check
+                            if (employee.isManager())
+                                position = "Manager";
+                            else
+                                position = "Employee";
                             break;
                         case "Register":
-                            Console.WriteLine("Register");
-                            endApp = true;
+                            //Register page
+                            Console.WriteLine("Registration Page");
+                            Console.WriteLine("Please enter a username");
+                            string username = Console.ReadLine();
+                            Console.WriteLine("Please enter a password");
+                            string password = Console.ReadLine();
+                            bool check = await usernameCheck(username);
+                            Console.WriteLine(check);
+                            Employee registration = new Employee(10, username, password);
+                            //await CreateEmployeeAsync(registration);
+                            //if CreateEmployee gets a dupe the id becomes 0, use that as a condition
+                            position = "Login";
                             break;
                         case "Employee":
-                            Console.WriteLine("Display Employee Menu");
+                            Console.WriteLine("Employee Menu");
+                            Console.WriteLine("What would you like to do? ");
+                            Console.WriteLine("1. View all your tickets \t 2. Submit a new ticket");
+                            input = Convert.ToInt32(Console.ReadLine());
+                            if (input == 1)
+                                position = "View Tickets";
+                            else
+                                position = "Submit Ticket";
+                            break;
+                        case "View Tickets":
+                            Console.WriteLine("Your Tickets: ");
+                            displayTicketsList(await getEmployeeTickets(employee));
+                            position = "Employee";
                             break;
                         case "Manager":
                             Console.WriteLine("Display Manager Menu");
                             break;
                         default:
                             Console.WriteLine("Defaulted");
+                            endApp = true;
                             break;
                     }
-                    /*
-                    Console.WriteLine("Welcome to the Ticket Reimbursment System");
-                    Console.WriteLine();
-                    Console.WriteLine("What would you like to do today?");
-                    Console.WriteLine("1. Register as Employee \t 2. Login");
-                    
-                    if(input == 1)
-                    {
-                        //Register page
-                        Console.WriteLine("Registration Page");
-                        Console.WriteLine("Please enter a username");
-                        string username = Console.ReadLine();
-                        Console.WriteLine("Please enter a password");
-                        string password = Console.ReadLine();
-                        Employee registration = new Employee(0, username, password);
-                        await CreateEmployeeAsync(registration);
-                        //if CreateEmployee gets a dupe the id becomes 0, use that as a condition
-
-                    }
-                    else if(input == 2)
-                    {
-                        //Login Page
-                        while (loggedIn != true)
-                        {
-                            employee = await loginPrompt();
-                            if (employee != null)
-                            {
-                                Console.WriteLine($"{employee.userName}" + " has logged in");
-                                loggedIn = true;
-                            }
-                            else
-                                Console.WriteLine("Invalid credentials, please try again");
-                        }
-
-                        //Manager check
-                        if (employee.isManager())
-                            Console.WriteLine("display manager menu");
-                        else
-                            Console.WriteLine("display employee menu");
-
-                    }
-                    */
+                   
 
                 }
 
@@ -221,10 +220,25 @@ namespace TicketSystemClient{
             return employee;
         }
         
+        static async Task<bool> usernameCheck(string username)
+        {
+            HttpResponseMessage response = await client.GetAsync($"/usernameCheck/{username}");
+            //fix this later
+            if (response.Content.Equals(true))
+                return true;
+            else
+                return false;
+                
+        }
         
         static async Task<List<Ticket>> getEmployeeTickets(Employee employee)
         {
             List<Ticket> ticketList = new List<Ticket>();
+            HttpResponseMessage response = await client.GetAsync($"/employeeTicket/{employee.iD}");
+            if(response.IsSuccessStatusCode)
+            {
+                ticketList = await response.Content.ReadAsAsync<List<Ticket>>();
+            }
             return ticketList;
         }
         

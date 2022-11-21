@@ -58,24 +58,11 @@ namespace TicketSystemAPI
             return employee;
         }
 
+        //maybe try calling usernameCheck in here to check for duplicate username
         public Employee? insertEmployee(Employee employee,string connString)
         {
             using(SqlConnection connection = new SqlConnection(connString))
-            {   
-                //checking for duplicate username
-                StringBuilder userNameCheck = new StringBuilder();
-                userNameCheck.Append($"SELECT * FROM TicketSystemDB.Employees WHERE userName = '{employee.userName}'");
-                Console.WriteLine(userNameCheck.ToString());
-                SqlCommand cmd = new SqlCommand(userNameCheck.ToString(), connection);
-                connection.Open();
-                SqlDataReader reader = cmd.ExecuteReader();
-                if (reader.Read())
-                {
-                    reader.Close();
-                    cmd.Dispose();
-                    return null;
-                }
-                reader.Close();
+            {
 
                 //if the username is unique, this part inserts the employee into db
                 StringBuilder qry = new StringBuilder();
@@ -84,12 +71,12 @@ namespace TicketSystemAPI
                     $"VALUES ('{employee.userName}','{employee.password}')");
                 qry.Append("SELECT @@IDENTITY;");
                 Console.WriteLine(qry.ToString());
-                SqlCommand cmd2 = new SqlCommand(qry.ToString(), connection);
+                SqlCommand cmd = new SqlCommand(qry.ToString(), connection);
                 
 
-                int newID = Convert.ToInt32(cmd2.ExecuteScalar());
+                int newID = Convert.ToInt32(cmd.ExecuteScalar());
                 employee.iD = newID;
-                cmd2.Dispose();
+                cmd.Dispose();
             }
             return employee;
         }
@@ -257,6 +244,26 @@ namespace TicketSystemAPI
                 cmd.Dispose();
             }
             return ticket;
+        }
+        
+
+        //if name is taken, returns false;
+        public bool userNameCheck(string username,string connString)
+        {
+            using(SqlConnection connection = new SqlConnection(connString))
+            {
+                StringBuilder qry = new StringBuilder();
+                qry.Append($"SELECT * FROM TicketSystemDB.Employees WHERE UserName = '{username}'");
+                Console.WriteLine(qry.ToString());
+                SqlCommand cmd = new SqlCommand(qry.ToString(), connection);
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                    return false;
+                else
+                    return true;
+
+            }
         }
 
 
