@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "nSRcgi6MYK4wtDHc0yurdN03vbHMDavgh/Oi2v5coIMO5IOF5x2c3p/kPNOHJ/vCH7dojw+vTX91C1MP2sKJFw==",
+  "dgSpecHash": "qjMmxNU7hTxxbFyFsOSBzILOO6WaAmLW9ILc2R9APcVxO8O+W7bYhRxKlIj8Wqlft6JUjUhBlCYA+YX7H1Qlyg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\TicketSystemClient.csproj",
+  "projectFilePath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemClient\\TicketSystemClient.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Calvin Tan\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.9\\microsoft.aspnet.webapi.client.5.2.9.nupkg.sha512",
     "C:\\Users\\Calvin Tan\\.nuget\\packages\\microsoft.csharp\\4.3.0\\microsoft.csharp.4.3.0.nupkg.sha512",

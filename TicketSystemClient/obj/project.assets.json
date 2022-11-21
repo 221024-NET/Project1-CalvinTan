@@ -6078,11 +6078,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\TicketSystemClient.csproj",
+      "projectUniqueName": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemClient\\TicketSystemClient.csproj",
       "projectName": "TicketSystemClient",
-      "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\TicketSystemClient.csproj",
+      "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemClient\\TicketSystemClient.csproj",
       "packagesPath": "C:\\Users\\Calvin Tan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\obj\\",
+      "outputPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemClient\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Calvin Tan\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6099,8 +6099,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj": {
-              "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj"
+            "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemAPI\\TicketSystemAPI.csproj": {
+              "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemAPI\\TicketSystemAPI.csproj"
             }
           }
         }

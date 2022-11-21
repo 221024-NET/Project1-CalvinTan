@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj": {}
+    "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemAPI\\TicketSystemAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj": {
+    "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemAPI\\TicketSystemAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemAPI\\TicketSystemAPI.csproj",
         "projectName": "TicketSystemAPI",
-        "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj",
+        "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemAPI\\TicketSystemAPI.csproj",
         "packagesPath": "C:\\Users\\Calvin Tan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\obj\\",
+        "outputPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project1\\TicketSystemAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Calvin Tan\\AppData\\Roaming\\NuGet\\NuGet.Config",
