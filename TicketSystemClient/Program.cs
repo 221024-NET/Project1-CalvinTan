@@ -96,11 +96,14 @@ namespace TicketSystemClient{
                             string username = Console.ReadLine();
                             Console.WriteLine("Please enter a password");
                             string password = Console.ReadLine();
-                            bool check = await usernameCheck(username);
-                            Console.WriteLine(check);
-                            Employee registration = new Employee(10, username, password);
-                            //await CreateEmployeeAsync(registration);
-                            //if CreateEmployee gets a dupe the id becomes 0, use that as a condition
+                            Employee registration = new Employee( username, password);
+                            System.Uri uri = await CreateEmployeeAsync(registration);
+                            if (uri==null)
+                            {
+                                Console.WriteLine("Username is already taken, please choose another");
+                                break;
+                            }
+                            Console.WriteLine("You have successfully created your account, you will be redirected to Login Page");
                             position = "Login";
                             break;
                         case "Employee":
@@ -149,7 +152,8 @@ namespace TicketSystemClient{
                                 await updateTicket(employee.iD, ticketId, "approved");
                             else if (input == 2)
                                 await updateTicket(employee.iD, ticketId, "denied");
-                            
+                            else
+                                break;
                             break;
                         case "Log out":
                             employee = null;

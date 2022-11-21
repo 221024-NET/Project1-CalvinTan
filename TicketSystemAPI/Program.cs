@@ -33,13 +33,21 @@ app.MapGet("/employees", (SQLRepo repo) =>
 app.MapGet("/employees/{id}", (SQLRepo repo, int id) =>
     repo.getEmployee(id, connString));
 
+//gets ticket off ticketID
 app.MapGet("/tickets/{ticketId}", (SQLRepo repo, int ticketId) =>
     repo.getTicket(ticketId, connString));
-//creates employee
+
+
+//creates employee, if duplicate username is detected the results will have no content
 app.MapPost("/employees", (SQLRepo repo, Employee employee) =>
-{
-    repo.insertEmployee(employee, connString);
-    return Results.Created($"/employees/{employee.iD}", employee);
+{   
+    if (repo.userNameCheck(employee.userName, connString))
+    {
+        repo.insertEmployee(employee, connString);
+        return Results.Created($"/employees/{employee.iD}", employee);
+    }
+    else 
+        return Results.NoContent();
 });
 
 //creates ticket

@@ -72,7 +72,7 @@ namespace TicketSystemAPI
                 qry.Append("SELECT @@IDENTITY;");
                 Console.WriteLine(qry.ToString());
                 SqlCommand cmd = new SqlCommand(qry.ToString(), connection);
-                
+                connection.Open();
 
                 int newID = Convert.ToInt32(cmd.ExecuteScalar());
                 employee.iD = newID;

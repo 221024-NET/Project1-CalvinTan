@@ -16,6 +16,13 @@
             this.role = role;
         }
 
+        public Employee(string userName,string password,string role = "employee")
+        {
+            this.userName = userName;
+            this.password = password;
+            this.role = role;
+        }
+
         public Employee()
         {
 
