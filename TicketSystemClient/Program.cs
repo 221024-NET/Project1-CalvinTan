@@ -43,18 +43,53 @@ namespace TicketSystemClient{
             {     //blank objects to initialize 
                 bool endApp = false;
                 bool loggedIn = false;
+                string position ="Welcome";
+                
                   Employee employee = new Employee();
                   Ticket ticket = new Ticket();
                   List<Ticket> tickets = new List<Ticket>();
                   List<Employee> employees = new List<Employee>();
+                
 
                 while(endApp == false)
                 {
+                    switch (position)
+                    { 
+                        case "Welcome":
+                            Console.WriteLine("Welcome to the Ticket Reimbursment System");
+                            Console.WriteLine();
+                            Console.WriteLine("What would you like to do today?");
+                            Console.WriteLine("1. Register as Employee \t 2. Login");
+                            int input = Convert.ToInt32(Console.ReadLine());
+                            if (input == 1)
+                                position = "Register";
+                            else if (input == 2)
+                                position = "Login";
+                            break;
+                        case "Login":
+                            Console.WriteLine("Login");
+                            endApp = true;
+                            break;
+                        case "Register":
+                            Console.WriteLine("Register");
+                            endApp = true;
+                            break;
+                        case "Employee":
+                            Console.WriteLine("Display Employee Menu");
+                            break;
+                        case "Manager":
+                            Console.WriteLine("Display Manager Menu");
+                            break;
+                        default:
+                            Console.WriteLine("Defaulted");
+                            break;
+                    }
+                    /*
                     Console.WriteLine("Welcome to the Ticket Reimbursment System");
                     Console.WriteLine();
                     Console.WriteLine("What would you like to do today?");
                     Console.WriteLine("1. Register as Employee \t 2. Login");
-                    int input = Convert.ToInt32(Console.ReadLine());
+                    
                     if(input == 1)
                     {
                         //Register page
@@ -90,7 +125,7 @@ namespace TicketSystemClient{
                             Console.WriteLine("display employee menu");
 
                     }
-                    
+                    */
 
                 }
 
