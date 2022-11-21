@@ -58,9 +58,9 @@ namespace TicketSystemClient{
                     switch (position)
                     { 
                         case "Welcome":
-                            Console.WriteLine("Welcome to the Ticket Reimbursment System");
+                            Console.WriteLine("\t \t \tWelcome to the Ticket Reimbursment System");
                             Console.WriteLine();
-                            Console.WriteLine("What would you like to do today?");
+                            Console.WriteLine("\t \t \t What would you like to do today?");
                             Console.WriteLine("1. Register as Employee \t 2. Login \t 3. Quit Application");
                             int input = Convert.ToInt32(Console.ReadLine());
                             if (input == 1)
@@ -71,7 +71,7 @@ namespace TicketSystemClient{
                                 position = "Quit";
                             break;
                         case "Login":
-                            Console.WriteLine("Login");
+                            Console.WriteLine("\t \t \t Login Menu" );
                             //Login Page
                             while (loggedIn != true)
                             {
@@ -93,10 +93,10 @@ namespace TicketSystemClient{
                             break;
                         case "Register":
                             //Register page
-                            Console.WriteLine("Registration Page");
-                            Console.WriteLine("Please enter a username");
+                            Console.WriteLine("\t \t \t Registration Page");
+                            Console.WriteLine("\t \t Please enter a username");
                             string username = Console.ReadLine();
-                            Console.WriteLine("Please enter a password");
+                            Console.WriteLine("\t \t Please enter a password");
                             string password = Console.ReadLine();
                             Employee registration = new Employee( username, password);
                             System.Uri uri = await CreateEmployeeAsync(registration);
@@ -109,22 +109,22 @@ namespace TicketSystemClient{
                             position = "Login";
                             break;
                         case "Employee":
-                            Console.WriteLine("Employee Menu");
-                            Console.WriteLine("What would you like to do? ");
+                            Console.WriteLine("\t \t \t Employee Menu");
+                            Console.WriteLine(" \t \t What would you like to do? ");
                             Console.WriteLine("1. View all your tickets \t 2. Submit a new ticket \t 3.Log out");
                             input = Convert.ToInt32(Console.ReadLine());
                             if (input == 1)
                                 position = "View Tickets";
                             else if(input ==2)
                                 position = "Submit Ticket";
-                            else
+                            else if (input==3 )
                             {
-                                employee = null;
-                                position = "Welcome";
+                                position = "Log out";
+                                break;
                             }
                             break;
                         case "View Tickets":
-                            Console.WriteLine("Your Tickets: ");
+                            Console.WriteLine("\t \t \t Your Tickets: ");
                             displayTicketsList(await getEmployeeTickets(employee));
                             position = "Employee";
                             break;
@@ -134,14 +134,17 @@ namespace TicketSystemClient{
                             Console.WriteLine("Please provide a short description of the ticket");
                             string description = Console.ReadLine();
                             ticket = new Ticket(0,amount, description, employee.iD,null);
-                            displayTicket(ticket);
                             uri = await createTicketAsync(ticket,employee);
-                            Console.WriteLine(uri);
+                            if (uri != null)
+                                Console.WriteLine("Your ticket has been submitted, it will be reviewed by a manager shortly");
+                            else
+                                Console.WriteLine("There was an error with your request, please try again");
+                            
                             position = "Employee";
                             break;
                         case "Manager":
-                            Console.WriteLine("Manager Menu");
-                            Console.WriteLine("What would you like to do today?");
+                            Console.WriteLine(" \t \t \t Manager Menu");
+                            Console.WriteLine("\t \t What would you like to do today?");
                             Console.WriteLine("1. View all pending tickets 2. Logout");
                             input = Convert.ToInt32(Console.ReadLine());
                             if (input == 1)
@@ -151,25 +154,41 @@ namespace TicketSystemClient{
 
                             break;
                         case "View Pending":
+                            Console.WriteLine("\t \t \t Here are all the pending tickets: ");
+                            Console.WriteLine();
                             displayTicketsList(await getPendingTickets());
-                            Console.WriteLine("Which ticket would you like to update?");
+                            Console.WriteLine("\t \t Which ticket would you like to update?");
                             int ticketId = Convert.ToInt32(Console.ReadLine());
                             displayTicket(await getSpecificTicket(ticketId));
-                            Console.WriteLine("Do you want to approve this ticket? " );
+                            Console.WriteLine(" \t \t  Do you want to approve this ticket? ");
                             Console.WriteLine("1. Yes \t 2. No \t 3. Back");
                             input = Convert.ToInt32(Console.ReadLine());
                             if (input == 1)
+                            {
                                 await updateTicket(employee.iD, ticketId, "approved");
+                                Console.WriteLine("\t \t \t Ticket has been approved");
+                            }
+
                             else if (input == 2)
+                            {
                                 await updateTicket(employee.iD, ticketId, "denied");
-                            else
+                                Console.WriteLine("\t \t \t Ticket has been denied");
+                            }
+                            else if(input == 3)
+                            {
+                                position = "Manager";
                                 break;
+                            }    
+                                
                             break;
                         case "Log out":
-                            employee = null;
+                            Console.WriteLine("\t \t \t You have logged out");
+                            employee = new Employee();
+                            loggedIn = false;
                             position = "Welcome";
                             break;
                         case "Quit":
+                            Console.WriteLine(" \t \t \t Have a nice day!");
                             endApp = true;
                             break;
                         default:
@@ -214,23 +233,30 @@ namespace TicketSystemClient{
         
         static void displayTicket(Ticket ticket)
         {
-            Console.WriteLine($"Ticket ID: {ticket.Id}\t " +
-                $"Amount: {ticket.amount}\t " +
-                $"Status: {ticket.status}\t " + 
-                $"Description: {ticket.description}\t +" +
-                $"Submitted By: {ticket.submittedBy}\t "+ 
-                $"Processed By: {ticket.processedBy}");
+            Console.WriteLine("------------");
+            Console.WriteLine("Ticket ID: " + ticket.Id);
+            Console.WriteLine("Amount: " + ticket.amount);
+            Console.WriteLine("Status: " + ticket.status);
+            Console.WriteLine("Description: " + ticket.description);
+            Console.WriteLine("Submitted By: " + ticket.submittedBy);
+            Console.WriteLine("Processed By: " + ticket.processedBy);
+            Console.WriteLine("------------");
         }
 
         static void displayTicketsList(List<Ticket> tickets)
         {
-            foreach(Ticket ticket in tickets)
-                Console.WriteLine($"Ticket ID: {ticket.Id}\t " +
-                $"Amount: {ticket.amount}\t " +
-                $"Status: {ticket.status}\t " +
-                $"Description: {ticket.description}\t " +
-                $"Submitted By: {ticket.submittedBy}\t " +
-                $"Processed By: {ticket.processedBy}");
+            foreach (Ticket ticket in tickets)
+            {
+                Console.WriteLine("------------");
+                Console.WriteLine("Ticket ID: " + ticket.Id);
+                Console.WriteLine("Amount: " + ticket.amount);
+                Console.WriteLine("Status: " + ticket.status);
+                Console.WriteLine("Description: " + ticket.description);
+                Console.WriteLine("Submitted By: " + ticket.submittedBy);
+                Console.WriteLine("Processed By: " + ticket.processedBy);
+            }
+            Console.WriteLine("------------");
+
         }
 
         //takes a URL and returns the employee
