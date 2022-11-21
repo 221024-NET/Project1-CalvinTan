@@ -21,8 +21,6 @@ namespace TicketSystemAPI
                 {
                     //creates a new employee and adds to list
                     Employee employee = new Employee();
-                    employee.fname = reader["FirstName"].ToString();
-                    employee.lname = reader["LastName"].ToString();
                     employee.userName = reader["UserName"].ToString();
                     employee.password = reader["Password"].ToString();
                     employee.role = reader["Role"].ToString();
@@ -48,8 +46,6 @@ namespace TicketSystemAPI
                 SqlDataReader reader = cmd.ExecuteReader();
                 while(reader.Read())
                 {
-                    employee.fname = reader["FirstName"].ToString();
-                    employee.lname = reader["LastName"].ToString();
                     employee.userName = reader["UserName"].ToString();
                     employee.password = reader["Password"].ToString();
                     employee.role = reader["Role"].ToString();
@@ -62,22 +58,38 @@ namespace TicketSystemAPI
             return employee;
         }
 
-        public Employee insertEmployee(Employee employee,string connString)
+        public Employee? insertEmployee(Employee employee,string connString)
         {
             using(SqlConnection connection = new SqlConnection(connString))
-            {
+            {   
+                //checking for duplicate username
+                StringBuilder userNameCheck = new StringBuilder();
+                userNameCheck.Append($"SELECT * FROM TicketSystemDB.Employees WHERE userName = '{employee.userName}'");
+                Console.WriteLine(userNameCheck.ToString());
+                SqlCommand cmd = new SqlCommand(userNameCheck.ToString(), connection);
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    reader.Close();
+                    cmd.Dispose();
+                    return null;
+                }
+                reader.Close();
+
+                //if the username is unique, this part inserts the employee into db
                 StringBuilder qry = new StringBuilder();
                 qry.Append($"INSERT INTO TicketSystemDB.Employees " +
-                    $"(FirstName,LastName,UserName,Password)" +
-                    $"VALUES ('{employee.fname}','{employee.lname}','{employee.userName}','{employee.password}')");
+                    $"(UserName,Password)" +
+                    $"VALUES ('{employee.userName}','{employee.password}')");
                 qry.Append("SELECT @@IDENTITY;");
                 Console.WriteLine(qry.ToString());
-                SqlCommand cmd = new SqlCommand(qry.ToString(), connection);
-                connection.Open();
+                SqlCommand cmd2 = new SqlCommand(qry.ToString(), connection);
+                
 
-                int newID = Convert.ToInt32(cmd.ExecuteScalar());
+                int newID = Convert.ToInt32(cmd2.ExecuteScalar());
                 employee.iD = newID;
-                cmd.Dispose();
+                cmd2.Dispose();
             }
             return employee;
         }
@@ -88,9 +100,7 @@ namespace TicketSystemAPI
             {
                 StringBuilder qry = new StringBuilder();
                 qry.Append($"UPDATE TicketSystemDB.Employees " +
-                    $"SET FirstName = '{employee.fname}'," +
-                    $"LastName = '{employee.lname}'," +
-                    $"UserName = '{employee.userName}'," +
+                    $"SET UserName = '{employee.userName}'," +
                     $"Password = '{employee.password}'," +
                     $"Role = '{employee.role}' " +
                     $"WHERE EmployeeId = {id};"
@@ -166,8 +176,6 @@ namespace TicketSystemAPI
                 SqlDataReader reader = cmd.ExecuteReader();
                     while (reader.Read())
                     {
-                        employee.fname = reader["FirstName"].ToString();
-                        employee.lname = reader["LastName"].ToString();
                         employee.userName = reader["UserName"].ToString();
                         employee.password = reader["Password"].ToString();
                         employee.iD = reader.GetInt32(0);
@@ -250,6 +258,7 @@ namespace TicketSystemAPI
             }
             return ticket;
         }
+
 
     }
 }

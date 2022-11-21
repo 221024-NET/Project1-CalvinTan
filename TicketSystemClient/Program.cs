@@ -41,27 +41,62 @@ namespace TicketSystemClient{
                 new MediaTypeWithQualityHeaderValue("application/json"));
             try
             {     //blank objects to initialize 
-                  bool loggedIn = false;
+                bool endApp = false;
+                bool loggedIn = false;
                   Employee employee = new Employee();
                   Ticket ticket = new Ticket();
                   List<Ticket> tickets = new List<Ticket>();
                   List<Employee> employees = new List<Employee>();
-                while (loggedIn != true)
+
+                while(endApp == false)
                 {
-                    employee = await loginPrompt();
-                    if (employee != null)
+                    Console.WriteLine("Welcome to the Ticket Reimbursment System");
+                    Console.WriteLine();
+                    Console.WriteLine("What would you like to do today?");
+                    Console.WriteLine("1. Register as Employee \t 2. Login");
+                    int input = Convert.ToInt32(Console.ReadLine());
+                    if(input == 1)
                     {
-                        Console.WriteLine($"{employee.userName}" + "has logged in");
-                        loggedIn = true;
+                        //Register page
+                        Console.WriteLine("Registration Page");
+                        Console.WriteLine("Please enter a username");
+                        string username = Console.ReadLine();
+                        Console.WriteLine("Please enter a password");
+                        string password = Console.ReadLine();
+                        Employee registration = new Employee(0, username, password);
+                        await CreateEmployeeAsync(registration);
+                        //if CreateEmployee gets a dupe the id becomes 0, use that as a condition
+
                     }
-                    else
-                        Console.WriteLine("Invalid credentials");
+                    else if(input == 2)
+                    {
+                        //Login Page
+                        while (loggedIn != true)
+                        {
+                            employee = await loginPrompt();
+                            if (employee != null)
+                            {
+                                Console.WriteLine($"{employee.userName}" + " has logged in");
+                                loggedIn = true;
+                            }
+                            else
+                                Console.WriteLine("Invalid credentials, please try again");
+                        }
+
+                        //Manager check
+                        if (employee.isManager())
+                            Console.WriteLine("display manager menu");
+                        else
+                            Console.WriteLine("display employee menu");
+
+                    }
+                    
+
                 }
 
-                    
-                
-                    
-                    
+
+
+
             } 
             catch(Exception e)
             {
@@ -74,8 +109,6 @@ namespace TicketSystemClient{
         static void displayEmployee(Employee employee)
         {
             Console.WriteLine($"ID: {employee.iD}\t " +
-                $"First Name: {employee.fname}\t " +
-                $"Last Name: {employee.lname}\t " +
                 $"Username: {employee.userName}\t " +
                 $"Password: {employee.password}\t " +
                 $"Role: {employee.role}\t "
@@ -86,8 +119,6 @@ namespace TicketSystemClient{
         {
             foreach(Employee person in employees) 
                 Console.WriteLine($"ID: {person.iD}\t " +
-                $"First Name: {person.fname}\t " +
-                $"Last Name: {person.lname}\t " +
                 $"Username: {person.userName}\t " +
                 $"Password: {person.password}\t " +
                 $"Role: {person.role}\t "
@@ -155,7 +186,12 @@ namespace TicketSystemClient{
             return employee;
         }
         
-        //Manager methods
+        
+        static async Task<List<Ticket>> getEmployeeTickets(Employee employee)
+        {
+            List<Ticket> ticketList = new List<Ticket>();
+            return ticketList;
+        }
         
 
 }
