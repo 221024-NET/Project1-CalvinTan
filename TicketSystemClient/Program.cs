@@ -51,7 +51,9 @@ namespace TicketSystemClient{
                   List<Employee> employees = new List<Employee>();
                 
 
-                while(endApp == false)
+
+ 
+                while (endApp == false)
                 {
                     switch (position)
                     { 
@@ -109,12 +111,17 @@ namespace TicketSystemClient{
                         case "Employee":
                             Console.WriteLine("Employee Menu");
                             Console.WriteLine("What would you like to do? ");
-                            Console.WriteLine("1. View all your tickets \t 2. Submit a new ticket");
+                            Console.WriteLine("1. View all your tickets \t 2. Submit a new ticket \t 3.Log out");
                             input = Convert.ToInt32(Console.ReadLine());
                             if (input == 1)
                                 position = "View Tickets";
-                            else
+                            else if(input ==2)
                                 position = "Submit Ticket";
+                            else
+                            {
+                                employee = null;
+                                position = "Welcome";
+                            }
                             break;
                         case "View Tickets":
                             Console.WriteLine("Your Tickets: ");
@@ -127,7 +134,10 @@ namespace TicketSystemClient{
                             Console.WriteLine("Please provide a short description of the ticket");
                             string description = Console.ReadLine();
                             ticket = new Ticket(0,amount, description, employee.iD,null);
-                            await createTicketAsync(ticket);
+                            displayTicket(ticket);
+                            uri = await createTicketAsync(ticket,employee);
+                            Console.WriteLine(uri);
+                            position = "Employee";
                             break;
                         case "Manager":
                             Console.WriteLine("Manager Menu");
@@ -263,16 +273,7 @@ namespace TicketSystemClient{
             return employee;
         }
         
-        static async Task<bool> usernameCheck(string username)
-        {
-            HttpResponseMessage response = await client.GetAsync($"/usernameCheck/{username}");
-            //fix this later
-            if (response.Content.Equals(true))
-                return true;
-            else
-                return false;
-                
-        }
+
         
         static async Task<List<Ticket>> getEmployeeTickets(Employee employee)
         {
@@ -285,10 +286,10 @@ namespace TicketSystemClient{
             return ticketList;
         }
 
-        static async Task<Uri> createTicketAsync(Ticket ticket)
+        static async Task<Uri> createTicketAsync(Ticket ticket,Employee employee)
         {
             HttpResponseMessage response = await client.PostAsJsonAsync(
-                $"/tickets", ticket);
+                $"/tickets/{employee.iD}", ticket);
             response.EnsureSuccessStatusCode();
 
             return response.Headers.Location;

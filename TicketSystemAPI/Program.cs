@@ -51,7 +51,7 @@ app.MapPost("/employees", (SQLRepo repo, Employee employee) =>
 });
 
 //creates ticket
-app.MapPost("/tickets", (SQLRepo repo, int employeeID,Ticket ticket) =>
+app.MapPost("/tickets/{employeeID}", (SQLRepo repo, int employeeID,Ticket ticket) =>
 {
     repo.insertTicket(employeeID, ticket, connString);
     return Results.Created($"/tickets/{ticket.Id}", ticket);
