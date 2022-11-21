@@ -46,7 +46,7 @@ namespace TicketSystemClient{
                   List<Ticket> tickets = new List<Ticket>();
                   List<Employee> employees = new List<Employee>();
                   employee = await loginPrompt();
-                  displayEmployee(employee);
+                  Console.WriteLine(employee.isManager());
 
             } 
             catch(Exception e)
