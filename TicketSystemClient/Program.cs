@@ -41,13 +41,27 @@ namespace TicketSystemClient{
                 new MediaTypeWithQualityHeaderValue("application/json"));
             try
             {     //blank objects to initialize 
+                  bool loggedIn = false;
                   Employee employee = new Employee();
                   Ticket ticket = new Ticket();
                   List<Ticket> tickets = new List<Ticket>();
                   List<Employee> employees = new List<Employee>();
-                  employee = await loginPrompt();
-                  Console.WriteLine(employee.isManager());
+                while (loggedIn != true)
+                {
+                    employee = await loginPrompt();
+                    if (employee != null)
+                    {
+                        Console.WriteLine($"{employee.userName}" + "has logged in");
+                        loggedIn = true;
+                    }
+                    else
+                        Console.WriteLine("Invalid credentials");
+                }
 
+                    
+                
+                    
+                    
             } 
             catch(Exception e)
             {

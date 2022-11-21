@@ -151,7 +151,8 @@ namespace TicketSystemAPI
             return tickets;
         }
 
-        public Employee login(string connString,string userName,string password)
+        //Make return type nullable so i can return null
+        public Employee? login(string connString,string userName,string password)
         {
             Employee employee = new Employee();
             using (SqlConnection connection = new SqlConnection(connString))
@@ -163,11 +164,8 @@ namespace TicketSystemAPI
                 SqlCommand cmd = new SqlCommand(qry.ToString(), connection);
                 connection.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
-                try
-                {
                     while (reader.Read())
                     {
-                        
                         employee.fname = reader["FirstName"].ToString();
                         employee.lname = reader["LastName"].ToString();
                         employee.userName = reader["UserName"].ToString();
@@ -175,15 +173,16 @@ namespace TicketSystemAPI
                         employee.iD = reader.GetInt32(0);
                         employee.role = reader["Role"].ToString();
                         break;
-                    }
-                }catch(Exception e)
-                {
-                    Console.WriteLine(e.Message);
-                }
+                    } 
                 reader.Close();
                 cmd.Dispose();
             }
-            return employee;
+            if (employee.iD != 0)
+                return employee;
+            else
+                return null;
+             
+            
         }
 
         //manager methods

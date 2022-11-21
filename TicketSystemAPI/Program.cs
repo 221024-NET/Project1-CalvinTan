@@ -65,7 +65,7 @@ app.MapDelete("/employees/{id}", (int id, SQLRepo repo) =>
 app.MapGet("/employeeTicket/{id}", (SQLRepo repo,int id) =>
     repo.seeOwnTickets(connString, id));
 
-//login, still working
+//login returns Employee
 app.MapGet("/login/{userName}/{password}", (string userName,string password,SQLRepo repo) =>
 {
     return repo.login(connString, userName, password);
