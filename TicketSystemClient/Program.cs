@@ -59,12 +59,14 @@ namespace TicketSystemClient{
                             Console.WriteLine("Welcome to the Ticket Reimbursment System");
                             Console.WriteLine();
                             Console.WriteLine("What would you like to do today?");
-                            Console.WriteLine("1. Register as Employee \t 2. Login ");
+                            Console.WriteLine("1. Register as Employee \t 2. Login \t 3. Quit Application");
                             int input = Convert.ToInt32(Console.ReadLine());
                             if (input == 1)
                                 position = "Register";
                             else if (input == 2)
                                 position = "Login";
+                            else
+                                position = "Quit";
                             break;
                         case "Login":
                             Console.WriteLine("Login");
@@ -116,8 +118,35 @@ namespace TicketSystemClient{
                             displayTicketsList(await getEmployeeTickets(employee));
                             position = "Employee";
                             break;
+                        case "Submit Ticket":
+                            Console.WriteLine("Please enter ticket amount (in dollars)");
+                            int amount = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Please provide a short description of the ticket");
+                            string description = Console.ReadLine();
+                            ticket = new Ticket(0,amount, description, employee.iD,null);
+                            await createTicketAsync(ticket);
+                            break;
                         case "Manager":
-                            Console.WriteLine("Display Manager Menu");
+                            Console.WriteLine("Manager Menu");
+                            Console.WriteLine("What would you like to do today?");
+                            Console.WriteLine("1. View all pending tickets 2. Logout");
+                            input = Convert.ToInt32(Console.ReadLine());
+                            if (input == 1)
+                                position = "View Pending";
+                            else
+                                position = "Log out";
+
+                            break;
+                        case "View Pending":
+                            displayTicketsList(await getPendingTickets());
+                            Console.ReadLine();
+                            break;
+                        case "Log out":
+                            employee = null;
+                            position = "Welcome";
+                            break;
+                        case "Quit":
+                            endApp = true;
                             break;
                         default:
                             Console.WriteLine("Defaulted");
@@ -235,6 +264,26 @@ namespace TicketSystemClient{
         {
             List<Ticket> ticketList = new List<Ticket>();
             HttpResponseMessage response = await client.GetAsync($"/employeeTicket/{employee.iD}");
+            if(response.IsSuccessStatusCode)
+            {
+                ticketList = await response.Content.ReadAsAsync<List<Ticket>>();
+            }
+            return ticketList;
+        }
+
+        static async Task<Uri> createTicketAsync(Ticket ticket)
+        {
+            HttpResponseMessage response = await client.PostAsJsonAsync(
+                $"/tickets", ticket);
+            response.EnsureSuccessStatusCode();
+
+            return response.Headers.Location;
+        }
+
+        static async Task<List<Ticket>> getPendingTickets()
+        {
+            List<Ticket> ticketList = new List<Ticket>();
+            HttpResponseMessage response = await client.GetAsync($"/allPendingTickets");
             if(response.IsSuccessStatusCode)
             {
                 ticketList = await response.Content.ReadAsAsync<List<Ticket>>();

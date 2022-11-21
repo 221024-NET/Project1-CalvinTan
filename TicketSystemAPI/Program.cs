@@ -72,7 +72,7 @@ app.MapGet("/login/{userName}/{password}", (string userName,string password,SQLR
 });
 
 //manager methods
-app.MapGet("/tickets", (SQLRepo repo) =>
+app.MapGet("/allPendingTickets", (SQLRepo repo) =>
     repo.getAllPendingTickets(connString));
 
 //updates specific ticket, only the status is allowed to to be changed
