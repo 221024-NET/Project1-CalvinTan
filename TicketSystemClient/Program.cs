@@ -139,7 +139,17 @@ namespace TicketSystemClient{
                             break;
                         case "View Pending":
                             displayTicketsList(await getPendingTickets());
-                            Console.ReadLine();
+                            Console.WriteLine("Which ticket would you like to update?");
+                            int ticketId = Convert.ToInt32(Console.ReadLine());
+                            displayTicket(await getSpecificTicket(ticketId));
+                            Console.WriteLine("Do you want to approve this ticket? " );
+                            Console.WriteLine("1. Yes \t 2. No \t 3. Back");
+                            input = Convert.ToInt32(Console.ReadLine());
+                            if (input == 1)
+                                await updateTicket(employee.iD, ticketId, "approved");
+                            else if (input == 2)
+                                await updateTicket(employee.iD, ticketId, "denied");
+                            
                             break;
                         case "Log out":
                             employee = null;
@@ -290,7 +300,27 @@ namespace TicketSystemClient{
             }
             return ticketList;
         }
+
+        static async Task<Ticket> getSpecificTicket(int ticketId)
+        {
+            Ticket ticket = new Ticket();
+            HttpResponseMessage response = await client.GetAsync($"/tickets/{ticketId}");
+            if (response.IsSuccessStatusCode)
+            {
+                ticket = await response.Content.ReadAsAsync<Ticket>();
+            }
+            return ticket;
+        }
         
+        //void for now, might change to Ticket return type if needed
+        static async Task<Ticket> updateTicket(int managerId,int ticketId,string status)
+        {
+            Ticket ticket = new Ticket();
+            HttpResponseMessage response = await client.PutAsJsonAsync($"/tickets/{managerId}/{ticketId}/{status}",managerId);
+            response.EnsureSuccessStatusCode();
+            ticket = await response.Content.ReadAsAsync<Ticket>();
+            return ticket;
+        }
 
 }
 }

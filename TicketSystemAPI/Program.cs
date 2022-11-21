@@ -33,6 +33,8 @@ app.MapGet("/employees", (SQLRepo repo) =>
 app.MapGet("/employees/{id}", (SQLRepo repo, int id) =>
     repo.getEmployee(id, connString));
 
+app.MapGet("/tickets/{ticketId}", (SQLRepo repo, int ticketId) =>
+    repo.getTicket(ticketId, connString));
 //creates employee
 app.MapPost("/employees", (SQLRepo repo, Employee employee) =>
 {
@@ -61,7 +63,7 @@ app.MapDelete("/employees/{id}", (int id, SQLRepo repo) =>
     return Results.Ok(id);
 });
 
-//gets specific employee TICKET
+//gets all of one specific employee TICKET(s)
 app.MapGet("/employeeTicket/{id}", (SQLRepo repo,int id) =>
     repo.seeOwnTickets(connString, id));
 
@@ -76,9 +78,9 @@ app.MapGet("/allPendingTickets", (SQLRepo repo) =>
     repo.getAllPendingTickets(connString));
 
 //updates specific ticket, only the status is allowed to to be changed
-app.MapPut("/tickets/{id}", (SQLRepo repo,Employee employee,int ticketId,string status) =>
+app.MapPut("/tickets/{managerId}/{ticketId}/{status}", (SQLRepo repo,int managerId,int ticketId,string status) =>
 {
-    repo.updateTicket(employee, ticketId, status, connString);
+    repo.updateTicket(managerId, ticketId, status, connString);
     return Results.NoContent();
 });
 

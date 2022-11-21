@@ -211,13 +211,13 @@ namespace TicketSystemAPI
             return tickets;
         }
 
-        public void updateTicket(Employee manager,int ticketId,string status,string connString)
+        public void updateTicket(int managerId,int ticketId,string status,string connString)
         {
             using (SqlConnection connection = new SqlConnection(connString))
             {
                 StringBuilder qry = new StringBuilder();
                 qry.Append($"UPDATE TicketSystemDB.Tickets SET Status = '{status}'," +
-                    $"ProcessedBy = {manager.iD} WHERE TicketId = {ticketId};");
+                    $"ProcessedBy = {managerId} WHERE TicketId = {ticketId};");
                 Console.WriteLine(qry.ToString());
                 SqlCommand cmd = new SqlCommand(qry.ToString(), connection);
                 connection.Open();
@@ -264,6 +264,31 @@ namespace TicketSystemAPI
                     return true;
 
             }
+        }
+
+        public Ticket getTicket(int ticketId,string connString)
+        {
+            Ticket ticket = new Ticket();
+            using (SqlConnection connection = new SqlConnection(connString))
+            {
+                StringBuilder qry = new StringBuilder();
+                qry.Append($"SELECT * FROM TicketSystemDB.Tickets WHERE TicketId = {ticketId}");
+                Console.WriteLine(qry.ToString());
+                SqlCommand cmd = new SqlCommand(qry.ToString(), connection);
+                connection.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    ticket.Id = reader.GetInt32(0);
+                    ticket.amount = reader.GetInt32(1);
+                    ticket.status = reader["Status"].ToString();
+                    ticket.description = reader["Description"].ToString();
+                    ticket.submittedBy = reader.GetInt32(4);
+                    int? processedBy = reader.IsDBNull(5) ? null : reader.GetInt32(5);
+                    ticket.processedBy = processedBy;
+                }
+            }
+            return ticket;
         }
 
 
