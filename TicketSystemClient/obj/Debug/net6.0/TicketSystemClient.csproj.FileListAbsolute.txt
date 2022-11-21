@@ -1,0 +1,55 @@
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.exe
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.deps.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.runtimeconfig.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.pdb
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.csproj.AssemblyReference.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.AssemblyInfoInputs.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.AssemblyInfo.cs
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.csproj.CoreCompileInputs.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.csproj.CopyComplete
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\refint\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.pdb
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.genruntimeconfig.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\TicketSystemClient\obj\Debug\net6.0\ref\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.exe
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.deps.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.runtimeconfig.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemClient.pdb
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.csproj.AssemblyReference.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.AssemblyInfoInputs.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.AssemblyInfo.cs
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.csproj.CoreCompileInputs.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.csproj.CopyComplete
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\refint\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.pdb
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\TicketSystemClient.genruntimeconfig.cache
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\obj\Debug\net6.0\ref\TicketSystemClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemAPI.deps.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemAPI.runtimeconfig.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\appsettings.json
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemAPI.exe
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\System.Data.SqlClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\runtimes\win-arm64\native\sni.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\runtimes\win-x64\native\sni.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\runtimes\win-x86\native\sni.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemAPI.dll
+C:\Users\Calvin Tan\Desktop\RevatureStuff\Project 1\TicketSystemClient\bin\Debug\net6.0\TicketSystemAPI.pdb

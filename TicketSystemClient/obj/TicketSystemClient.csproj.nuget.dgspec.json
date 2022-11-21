@@ -1,0 +1,141 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\TicketSystemClient.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj",
+        "projectName": "TicketSystemAPI",
+        "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj",
+        "packagesPath": "C:\\Users\\Calvin Tan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Calvin Tan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.2.3, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\TicketSystemClient.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\TicketSystemClient.csproj",
+        "projectName": "TicketSystemClient",
+        "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\TicketSystemClient.csproj",
+        "packagesPath": "C:\\Users\\Calvin Tan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemClient\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Calvin Tan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj": {
+                "projectPath": "C:\\Users\\Calvin Tan\\Desktop\\RevatureStuff\\Project 1\\TicketSystemAPI\\TicketSystemAPI.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNet.WebApi.Client": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
